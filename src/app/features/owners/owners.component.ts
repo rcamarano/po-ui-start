@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { PoBreadcrumb, PoPageAction } from '@po-ui/ng-components';
+import { PoBreadcrumb, PoPageAction, PoTableColumn } from '@po-ui/ng-components';
+import { Owners } from './shared/interfaces/owners.model';
 
 
 @Component({
@@ -17,9 +18,48 @@ export class OwnersComponent {
       { label: 'Owners' }
     ]
   }
+  columns!: Array<PoTableColumn>;
+  owners: Owners = {
+    items: [],
+    hasnext: false,
+    remaingrecords: 0
+  }
+  
 
   constructor() { }
 
   ngOnInit(): void {
+    this.setColumns();
+    this.getOwners();
+    }
+
+    setColumns(): void {
+      this.columns = [
+        {property: 'id', label: 'ID', type: 'number'},
+        {property: 'name', label: 'Name'},
+        {property: 'rg', label: 'RG', visible: true},
+        {property: 'cpf', label: 'CPF'},
+        {property: 'email', label: 'Email'},
+        {property: 'phone 1', label: 'Phone 1'},
+        {property: 'phone 2', label: 'Phone 2', visible: true},
+        {property: 'pets', label: 'Pets', type: 'icon', icons: [
+          { value: 'view-pet', icon: 'po-icon-eye', tooltip: 'View Pets'},
+          { value: 'include-pet', icon: 'po-icon-plus-circle', tooltip: 'Include Pets'}, 
+        ]
+        }
+
+      ]
+    }
+    getOwners(): void {
+      this.owners.items = [
+        { id: 0o1,
+          name: "Nome",
+          rg: "Teste",
+          cpf: "Teste",
+          email: "Teste",
+          phone1: "Teste",
+          phone2: "Teste2"
+        },
+      ]
     }
 }

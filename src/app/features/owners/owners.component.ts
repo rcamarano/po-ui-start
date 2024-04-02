@@ -1,3 +1,4 @@
+import { OwnersServicesTsService } from './shared/services/owners.services.ts.service';
 import { Component } from '@angular/core';
 import { PoBreadcrumb, PoPageAction, PoTableColumn } from '@po-ui/ng-components';
 import { Owners } from './shared/interfaces/owners.model';
@@ -24,6 +25,7 @@ export class OwnersComponent {
     hasnext: false,
     remaingrecords: 0
   }
+  OwnersServicesTsService: any;
   
 
   constructor() { }
@@ -50,16 +52,7 @@ export class OwnersComponent {
 
       ]
     }
-    getOwners(): void {
-      this.owners.items = [
-        { id: 0o1,
-          name: "Nome",
-          rg: "Teste",
-          cpf: "Teste",
-          email: "Teste",
-          phone1: "Teste",
-          phone2: "Teste2"
-        },
-      ]
+   async  getOwners(): Promise<void> {
+      this.OwnersServicesTsService.getOwners().then((owners: Owners) => (this.owners = owners));
     }
 }

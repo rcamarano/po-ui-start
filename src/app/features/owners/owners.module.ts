@@ -4,6 +4,7 @@ import { OwnersComponent } from './owners.component';
 import { SharedModule } from '../../shared/shared.module';
 import { OwnersRoutingModule } from './owners.routing.module';
 import { PoModule } from '@po-ui/ng-components';
+import { OwnersService } from '../owners/shared/services/local-owners.service';
 
 
 
@@ -16,6 +17,9 @@ import { PoModule } from '@po-ui/ng-components';
     SharedModule,
     OwnersRoutingModule,
     PoModule,
+  ],
+  providers: [
+    OwnersService
   ]
 })
 export class OwnersModule { }

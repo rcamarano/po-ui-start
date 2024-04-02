@@ -1,7 +1,7 @@
-import { OwnersServicesTsService } from './shared/services/owners.services.ts.service';
 import { Component } from '@angular/core';
 import { PoBreadcrumb, PoPageAction, PoTableColumn } from '@po-ui/ng-components';
 import { Owners } from './shared/interfaces/owners.model';
+import { OwnersService } from './shared/services/local-owners.service';
 
 
 @Component({
@@ -25,10 +25,9 @@ export class OwnersComponent {
     hasnext: false,
     remaingrecords: 0
   }
-  OwnersServicesTsService: any;
   
 
-  constructor() { }
+  constructor(private ownersService: OwnersService) { }
 
   ngOnInit(): void {
     this.setColumns();
@@ -52,7 +51,26 @@ export class OwnersComponent {
 
       ]
     }
-   async  getOwners(): Promise<void> {
-      this.OwnersServicesTsService.getOwners().then((owners: Owners) => (this.owners = owners));
+    // getOwners(): void {
+    //   this.owners.items = [
+    //     { id: 1,
+    //       name: "Nome",
+    //       rg: "Teste",
+    //       cpf: "Teste",
+    //       email: "Teste",
+    //       phone1: "Teste",
+    //       phone2: "Teste2"
+    //     },
+    //   ]
+    // }
+    getOwners(): void {
+      this.ownersService.getOwners().subscribe(
+        (data) => {
+          this.owners = data;
+        },
+        (error) => {
+          console.error('No owners found', error);
+        }
+      );
     }
 }

@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "server": "json-server --watch db.json",
     "serve:ssr:po-ui-start": "node dist/po-ui-start/server/server.mjs"
   },
   "private": true,
@@ -24,6 +25,7 @@
     "@po-ui/ng-components": "^17.1.1",
     "@totvs/po-theme": "^17.1.1",
     "express": "^4.18.2",
+    "json-server": "^1.0.0-alpha.23",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

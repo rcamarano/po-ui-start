@@ -8,7 +8,7 @@ import { Owners } from '../interfaces/owners.model';
 })
 export class OwnersService {
 
-  private dbUrl = '..//../../../../../db.json'; // Caminho para o seu arquivo JSON local
+  private dbUrl = 'http://localhost:3000/owners';
 
   constructor(private http: HttpClient) { }
 
